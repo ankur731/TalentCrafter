@@ -1,0 +1,101 @@
+.profile{
+    background-color: #f8fafc;
+}
+.profile-top, .profile-about, .profile-education, .profile-experience, .profile-certification, .profile-skill{
+    padding: 15px ;
+    background-color: #fff;
+    border: 1px solid #eeeeec;
+    border-radius: 7px;
+    box-shadow: 1px 1px 4px #eeeeec;
+    position: relative;
+}
+
+.profile-top-bar{
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+}
+.profile-top h4, .profile-pic p{
+    margin: 0;
+}
+.profile-pic{
+    width: 100px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+.edit-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.action-btns{
+    display: flex;
+    gap: 0 15px;
+}
+.action-btnn{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.action-btn{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #abaaaa;
+    border-radius: 50%;
+    /* padding: 2px; */
+}
+.certificate-pic{
+    width: 100%;
+}
+.certificate-detail>p:last-child{
+    color: #686868;
+}
+.certificate-detail>p>span{
+    font-weight: 600;
+}
+.skill-section{
+    display: flex;
+    gap: 10px 10px;
+    flex-wrap: wrap;
+}
+.skill-bar{
+    padding: 5px 14px;
+    background-color: #e4ebe4;
+    border-radius: 20px;
+    font-size: 14px;
+}
+.application-div, .saved-jobs-div{
+    padding: 15px ;
+    background-color: #fff;
+    border: 1px solid #eeeeec;
+    border-radius: 7px;
+    box-shadow: 1px 1px 4px #eeeeec;
+    max-height: 280px;
+    overflow: scroll;
+}
+.saved-jobs-div::-webkit-scrollbar{
+    display: none;
+}
+
+.applied-bar{
+    cursor: pointer;
+}
+.application-div::-webkit-scrollbar{
+    display: none;
+}
+.applied-bar-top, .applied-bar-bottom{
+    display: flex;
+    justify-content: space-between;
+}
+.applied-bar-top>h6:hover, .applied-bar-top>p{
+    color: #ee786b;
+}
+
+.applied-bar-top>h6, .applied-bar-top>p, .applied-bar>p{
+    margin: 0;
+}
+.applied-bar-bottom>p{
+    font-size: 15px;
+}

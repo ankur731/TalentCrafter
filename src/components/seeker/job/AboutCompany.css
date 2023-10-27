@@ -1,0 +1,8 @@
+.about-company-top{
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+}
+.abt-company>h4, .abt-company>p{
+    margin: 0;
+}

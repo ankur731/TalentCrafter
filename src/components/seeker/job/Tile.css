@@ -1,0 +1,8 @@
+.tile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: none;
+    height: 70px;
+}

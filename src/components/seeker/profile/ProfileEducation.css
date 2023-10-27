@@ -1,0 +1,9 @@
+.card {
+    background: #eeeeec;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+.p-confirm-dialog{
+    padding: 15px;
+}

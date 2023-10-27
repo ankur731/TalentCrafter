@@ -1,0 +1,27 @@
+.skill-card{
+    width: 100%;
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-around;
+    background-color: #ffff;
+    gap: 10px 0;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+.skill-card>h4{
+    color: #ee786b;
+}
+.skill{
+    display: flex;
+    justify-content: space-between;
+}
+.skill>strong>h5{
+    font-size: 16px;
+    margin: 0;
+}
+.skill>p{
+    /* font-size: 15px; */
+    margin: 0;
+}

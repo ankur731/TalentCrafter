@@ -1,0 +1,36 @@
+.profile-card{
+    width: 100%;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ffff;
+    gap: 10px 0;
+    border-radius: 10px;
+    
+}
+.profile-card>img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+.profile-card>.edit-profile-btn{
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    width: 80%;
+    font-size: 17px;
+    background-color: #f9fbfb;
+    color: #66bacb;
+}
+.profile-card-middle{
+    display: flex;
+    flex-direction: column;
+    /* gap: 5px 0; */
+    align-items: center;
+}
+.profile-card-middle>h5{
+    font-size: 15px;
+    color: #212121;
+}

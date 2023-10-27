@@ -1,0 +1,28 @@
+.apply-div{
+    border: 1px solid #eeeeec;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 1px 1px 4px #eeeeec;
+}
+
+.application-label{
+    color: #474646;
+}
+.application-input{
+    border: 2px solid #e3e3e1;
+    border-radius: 4px;
+    padding: 8px 15px;
+    min-height: 120px;
+    height: auto;
+    resize: none;
+    outline: none;
+}
+.save-job-btn{
+    border: none;
+}
+.guZdik{
+    max-width: 100% !important;
+    min-width: 100% !important ;
+    width: 100% !important;
+}

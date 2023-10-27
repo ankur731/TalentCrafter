@@ -1,0 +1,29 @@
+.exp-level-filter{
+    padding: 15px;
+    background-color: #fff;
+    width: 90%;
+    border-radius: 10px;
+}
+.exp-level{
+    display: flex;
+    align-items: center;
+    gap: 0 5px ;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.exp-level>h5{
+    margin: 0;
+    font-size: 17px;
+}
+.exp-level>h4{
+    font-size: 19px;
+    margin: 0;
+    color: #ee786b;
+}
+.exp-level>p{
+    margin: 0;
+    margin-left:  auto;
+    /* margin-left: auto; */
+    align-self: flex-end;
+}

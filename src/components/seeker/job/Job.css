@@ -1,0 +1,91 @@
+
+.job-main, .job-side, .job-link{
+    background-color: #fff;
+    border: 1px solid #eeeeec;
+    border-radius: 7px;
+    box-shadow: 1px 1px 4px #eeeeec;
+    padding: 15px ;
+    overflow: auto;
+}
+
+
+
+.job-main-top{
+    display: flex;
+    gap: 0 15px;
+    align-items: center;
+}
+.job-main-top>p{
+    margin-left: auto;
+}
+.job-main-top h4, p{
+    margin: 0;
+}
+.job-logo{
+    width: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+.top-divider, .bottom-divider{
+    margin: 25px 0;
+    color: #a4a4a1;
+}
+.skill-tab-row{
+    display: flex;
+    gap: 0 15px;
+    overflow-x: scroll;
+    
+}
+.skill-tab-row::-webkit-scrollbar{
+    display: none;
+}
+.skill-tab-row>p{
+        padding: 6px 15px;
+        border-radius: 18px;
+        background-color:#e4ebe4;
+        display: inline;
+        font-size: 15px;
+        font-weight: 600;
+}
+.job-bottom{
+    display: flex;
+    justify-content: flex-start;
+    gap: 0 15px;
+}
+
+.save-job-btn{
+    padding: 9px 30px;
+    border: 1px solid #eeeeec;
+}
+.job-side{
+    /* margin: 0 10px; */
+    height: fit-content;
+}
+.job-side>h4, .job-side>p{
+    margin: 0;
+    font-weight: 600;
+}
+.about-company>p{
+    color: #424242;
+}
+.other-job-bar-top{
+    display: flex;
+    justify-content: space-between;
+}
+.other-job-bar-top-top>h6, .other-job-bar-top>p{
+    margin: 0;
+}
+ .other-job-bar-top>p{
+    font-size: 14px;
+}
+.job-link-input{
+    border: none;
+    background-color: #e4ebe4;
+    padding: 7px 10px;
+    border-radius: 4px;
+}
+.job-link>p:last-child{
+    color: #ee786b;
+    font-weight: 600;
+    cursor: pointer;
+}

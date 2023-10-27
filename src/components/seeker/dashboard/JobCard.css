@@ -1,0 +1,77 @@
+.job-card{
+    padding: 25px;
+    border-radius: 10px;
+    background-color: #fff;
+    margin: 15px 0;
+}
+.job-card-top{
+    cursor: pointer;
+    display: flex;
+    gap: 0 10px;
+    align-items: center;
+}
+.com-logo{
+    width: 60px;
+    border-radius: 10px;
+    aspect-ratio: 1/1;
+}
+.job-card-top>h4, .job-card-top>p{
+    margin: 0;
+}
+.job-card-abt>h4, .job-card-abt>p{
+    margin: 0;
+}
+.job-card>.job-card-top>h4{
+    font-size: 21px;
+}
+.job-card>p{
+    color: #2f2e2e;
+}
+.save-job-btn{
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    background-color: #f8fafc;
+    color: #66bacb;
+    font-weight: 600;
+}
+.job-card-middle{
+    display: flex;
+    gap: 0 15px;
+}
+.job-card-middle-btn{
+    padding: 8px 25px;
+    border: none;
+    border-radius: 7px;
+    font-weight: 600;
+    background-color: #f8fafc;
+    color: #2c2c2c;
+}
+.job-card-bottom-line{
+    margin-top: 20px ;
+    color: grey;
+}
+.job-card-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.job-card-bottom>p{
+    color: grey;
+    font-size: 16px;
+    margin: 0;
+}
+.job-card-bottom>p>span{
+    color: #111;
+    font-size: 19px;
+    font-weight: 600;
+}
+.apply-btn{
+    padding: 9px 30px;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    background-color: #ee786b;
+}

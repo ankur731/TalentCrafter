@@ -1,0 +1,45 @@
+.navbar{
+    width: 100vw;
+    padding: 15px   10px;
+    background-color: #f8fafc;
+}
+.navbar-row{
+    width: 100%;
+}
+.middle-bar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* gap: 0 5x; */
+}
+.middle-bar-tab{
+    padding: 5px 15px;
+    border-radius: 15px;
+    background-color:#7ac8d843;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.middle-bar-tab>h5{
+    font-size: 16px;
+    margin: 0;
+    color: #353535;
+}
+
+.authBtn-bar{
+    display: flex;
+    gap: 0 15px;
+}
+.authBtn-bar>.authBtn{
+    padding: 7px 15px;
+    border: none;
+    border-radius: 5px;
+}
+.authBtn:last-child{
+    background-color: #f2f8f8;
+    color: #111;
+    border: 1px solid #111;
+}
+.authBtn>p{
+    margin: 0;
+}

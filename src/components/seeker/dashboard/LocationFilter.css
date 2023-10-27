@@ -1,0 +1,37 @@
+.location-level-filter{
+    padding: 15px;
+    background-color: #fff;
+    width: 90%;
+    margin: 15px 0;
+    border-radius: 10px;
+}
+.location-level{
+    display: flex;
+    align-items: center;
+    gap: 0 5px ;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.location-level>h5{
+    margin: 0;
+    font-size: 17px;
+}
+.location-level>h4{
+    font-size: 19px;
+    margin: 0;
+    color: #ee786b;
+}
+.location-level>p{
+    margin: 0;
+    margin-left:  auto;
+    /* margin-left: auto; */
+    align-self: flex-end;
+}
+.city-search{
+    width: 100%;
+    border: 1px solid #dadad8;
+    padding: 8px 15px;
+    outline: none;
+    border-radius: 4px;
+}
