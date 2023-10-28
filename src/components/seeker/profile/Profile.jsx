@@ -34,13 +34,16 @@ import { useAuthContext } from "../../../hooks/useAuthContext";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import PersonalDetailsSkeleton from "./skeleton/PersonalDetailsSkeleton";
+import SideBox from "../job/skeleton/SideBox";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+// const baseUrl = 'https://talentcrafterbackend.onrender.com'
+// const baseUrl = "http://localhost:3001";
 const baseUrl = 'https://talentcrafterbackend.onrender.com'
-// const baseUrl = 'http://localhost:3001'
+
 
 const style = {
   position: "absolute",
@@ -60,6 +63,7 @@ function Profile() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
   const [addOpen, setAddOpen] = useState(false);
+  const [savedJobs, setSavedJobs] = useState([]);
   const [educationDetails, setEducationDetails] = useState([]);
   const { dispatch } = useAuthContext();
 
@@ -97,8 +101,8 @@ function Profile() {
       .then((response) => {
         // const data = response.json();
         setUser(response.data);
-        setPersonalFormValues(response.data)
-        dispatch({type:'LOGIN', payload:response})
+        setPersonalFormValues(response.data);
+        dispatch({ type: "LOGIN", payload: response });
         const educations = response.data.education;
 
         // Fetch education details for each education ID
@@ -112,17 +116,36 @@ function Profile() {
             // Set the fetched education details
             const educationDetails = educationResponses.map((res) => res.data);
             setEducationDetails(educationDetails);
-            setLoading(false)
+            setLoading(false);
             // console.log(educationDetails);
           })
           .catch((error) => {
             console.error("Error fetching education details:", error);
-            setLoading(false)
+            setLoading(false);
           });
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-          setLoading(false)
+
+        //fetch savedJObs Data
+        const savedJobsPromises = response.data.savedJobs.map((savedJobsId) => {
+          return axios.get(`${baseUrl}/jobs/${savedJobsId}`);
+        });
+
+        // Wait for all education details requests to complete
+        Promise.all(savedJobsPromises)
+          .then((savedJobsResponses) => {
+            // Set the fetched education details
+            const savedJobsDetails = savedJobsResponses.map((res) => res.data);
+            setSavedJobs(savedJobsDetails);
+            setLoading(false);
+            // console.log(educationDetails);
+          })
+          .catch((error) => {
+            console.error("Error fetching saved jobs details:", error);
+            setLoading(false);
+          });
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+        setLoading(false);
       });
   }
 
@@ -167,94 +190,93 @@ function Profile() {
       .catch((error) => {
         console.error("Error deleting education:", error);
         // Handle errors, e.g., display an error message
-      }) 
-      
+      });
   };
 
-
   //education edit
-
 
   const handleEducationEdit = (educationFormValues, educationId) => {
     setLoading(true);
     var userr = localStorage.getItem("user");
     const userId = JSON.parse(userr).data.id;
 
-    axios.put(`${baseUrl}/education/${userId}/${educationId}`, educationFormValues)
-    .then((response) => {
-      if (response.status === 201) {
-        toast.success("edit Successfull !", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        fetchUser();
-      } else {
-        toast.error("Something went wrong !", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        fetchUser();
-        // setLoading(false);
-      }
-    })
-    .catch((error) => {
-      // Handle errors, e.g., display an error message
-      console.error('Error updating education data:', error);
-      setLoading(false);
-    });
-  }
+    axios
+      .put(`${baseUrl}/education/${userId}/${educationId}`, educationFormValues)
+      .then((response) => {
+        if (response.status === 201) {
+          toast.success("edit Successfull !", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          fetchUser();
+        } else {
+          toast.error("Something went wrong !", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          fetchUser();
+          // setLoading(false);
+        }
+      })
+      .catch((error) => {
+        // Handle errors, e.g., display an error message
+        console.error("Error updating education data:", error);
+        setLoading(false);
+      });
+  };
   const handlePersonalEdit = (personalFormValues) => {
     setLoading(true);
     var userr = localStorage.getItem("user");
     const userId = JSON.parse(userr).data.id;
 
-    axios.put(`${baseUrl}/user/${userId}`, personalFormValues)
-    .then((response) => {
-      if (response.status === 201) {
-        toast.success("edit Successfull !", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        fetchUser();
-      } else {
-        toast.error("Something went wrong !", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        fetchUser();
-        // setLoading(false);
-      }
-    })
-    .catch((error) => {
-      // Handle errors, e.g., display an error message
-      console.error('Error updating personal data:', error);
-      setLoading(false);
-    });
-  }
+    axios
+      .put(`${baseUrl}/user/${userId}`, personalFormValues)
+      .then((response) => {
+        if (response.status === 201) {
+          toast.success("edit Successfull !", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          fetchUser();
+        } else {
+          toast.error("Something went wrong !", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          fetchUser();
+          // setLoading(false);
+        }
+      })
+      .catch((error) => {
+        // Handle errors, e.g., display an error message
+        console.error("Error updating personal data:", error);
+        setLoading(false);
+      });
+  };
 
   const handleEducationChange = (event) => {
     const { id, value } = event.target;
@@ -291,9 +313,9 @@ function Profile() {
       const response = await axios.post(
         `${baseUrl}/education/${userId}`,
         educationFormValues
-        ); // Replace with your API endpoint
-        setAddOpen(!addOpen);
-        setLoading(true)
+      ); // Replace with your API endpoint
+      setAddOpen(!addOpen);
+      setLoading(true);
       //  const json = await JSON.parse(response)
       if (response.status === 201) {
         toast.success("Addition Successfull !", {
@@ -328,8 +350,6 @@ function Profile() {
       // setError(error);
     }
 
-   
-
     setEducationFormValues("");
   };
 
@@ -354,9 +374,10 @@ function Profile() {
           <div className="row">
             <div className="col-8 profile-div">
               <div className="profile-top mt-0">
-              
-                  {loading ?
-      <PersonalDetailsSkeleton />:<>
+                {loading ? (
+                  <PersonalDetailsSkeleton />
+                ) : (
+                  <>
                     <div className="profile-top-bar  mb-3">
                       <div className="action-btnn">
                         <ModeEditIcon
@@ -371,96 +392,96 @@ function Profile() {
                           aria-labelledby="modal-modal-title"
                           aria-describedby="modal-modal-description"
                         >
-                      <Box sx={style}>
-                      <form>
-                            <Typography
-                              id="modal-modal-title"
-                              variant="h6"
-                              component="h2"
-                            >
-                              Enter Personal Details
-                            </Typography>
-
-                            {/* <Box sx={style}> */}
-                            <TextField
-                              autoFocus
-                              margin="dense"
-                              id="name"
-                              label="Name"
-                              type="text"
-                              fullWidth
-                            variant="standard"
-                            value={personalFormValues.name}
-                            onChange={handlePersonalChange}
-                            />
-                            <TextField
-                              autoFocus
-                              margin="dense"
-                              id="email"
-                              label="Email"
-                              type="text"
-                              fullWidth
-                            variant="standard"
-                            value={personalFormValues.email}
-                            onChange={handlePersonalChange}
-                            />
-                            <TextField
-                              autoFocus
-                              margin="dense"
-                              id="location"
-                              label="Location"
-                              type="text"
-                              fullWidth
-                            variant="standard"
-                            value={personalFormValues.location}
-                            onChange={handlePersonalChange}
-                            />
-
-                            {/* <DatePicker /> */}
-                            <TextField
-                              autoFocus
-                              margin="dense"
-                              id="role"
-                              label="Role"
-                              type="text"
-                              fullWidth
-                            variant="standard"
-                            value={personalFormValues.role}
-                            onChange={handlePersonalChange}
-                            />
-
-                            <TextField
-                              autoFocus
-                              margin="dense"
-                              id="description"
-                              label="Description"
-                              type="text"
-                              fullWidth
-                            variant="standard"
-                            value={personalFormValues.description}
-                            onChange={handlePersonalChange}
-                        />
-                        
-                            <label className="mt-3 mb-2">
-                              Upload Profile Photo
-                            </label>
-                        <FileUploader />
-                            <DialogActions className="mt-4">
-                              <Button
-                                variant="outlined"
-                                onClick={handleEditClose}
+                          <Box sx={style}>
+                            <form>
+                              <Typography
+                                id="modal-modal-title"
+                                variant="h6"
+                                component="h2"
                               >
-                                Cancel
-                              </Button>
-                              <Button
-                                variant="contained"
-                                color="success"
-                                onClick={handleEdit}
-                              >
-                                Save
-                              </Button>
-                        </DialogActions>
-                        </form>
+                                Enter Personal Details
+                              </Typography>
+
+                              {/* <Box sx={style}> */}
+                              <TextField
+                                autoFocus
+                                margin="dense"
+                                id="name"
+                                label="Name"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                value={personalFormValues.name}
+                                onChange={handlePersonalChange}
+                              />
+                              <TextField
+                                autoFocus
+                                margin="dense"
+                                id="email"
+                                label="Email"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                value={personalFormValues.email}
+                                onChange={handlePersonalChange}
+                              />
+                              <TextField
+                                autoFocus
+                                margin="dense"
+                                id="location"
+                                label="Location"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                value={personalFormValues.location}
+                                onChange={handlePersonalChange}
+                              />
+
+                              {/* <DatePicker /> */}
+                              <TextField
+                                autoFocus
+                                margin="dense"
+                                id="role"
+                                label="Role"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                value={personalFormValues.role}
+                                onChange={handlePersonalChange}
+                              />
+
+                              <TextField
+                                autoFocus
+                                margin="dense"
+                                id="description"
+                                label="Description"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                value={personalFormValues.description}
+                                onChange={handlePersonalChange}
+                              />
+
+                              <label className="mt-3 mb-2">
+                                Upload Profile Photo
+                              </label>
+                              <FileUploader />
+                              <DialogActions className="mt-4">
+                                <Button
+                                  variant="outlined"
+                                  onClick={handleEditClose}
+                                >
+                                  Cancel
+                                </Button>
+                                <Button
+                                  variant="contained"
+                                  color="success"
+                                  onClick={handleEdit}
+                                >
+                                  Save
+                                </Button>
+                              </DialogActions>
+                            </form>
                           </Box>
                           {/* </Box> */}
                         </Modal>
@@ -472,16 +493,14 @@ function Profile() {
                       />
                       <div>
                         <h4>{user?.name}</h4>
-                    <p>{user?.location}</p>
+                        <p>{user?.location}</p>
                       </div>
                     </div>
 
                     <h4>{user?.role}</h4>
-                    <p className="mt-1">
-                      {user?.description}
-                  </p>
-                  </>}
-               
+                    <p className="mt-1">{user?.description}</p>
+                  </>
+                )}
               </div>
               <div className="profile-education mt-3">
                 <h4 className="mb-4 mt-2 profile-heading">Education</h4>
@@ -629,7 +648,14 @@ function Profile() {
             </div>
             <div className="col-3">
               <ProfileApplications />
-              <ProfileSavedJobs />
+              <div className="saved-jobs-div mt-3">
+                <h5 className="mb-3">Saved Jobs</h5>
+                {loading?<SideBox />:
+                savedJobs.map((job)=>{
+                  return <ProfileSavedJobs onUpdate={fetchUser} jobData={job} />
+                })
+                }
+              </div>
             </div>
           </div>
         </div>

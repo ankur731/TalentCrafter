@@ -3,32 +3,24 @@ import "./SearchBar.css";
 import JobCard from "./JobCard";
 import JobCardSkeleton from "./JobCardSkeleton";
 
-const baseUrl = 'https://talentcrafterbackend.onrender.com'
+// const baseUrl = 'https://talentcrafterbackend.onrender.com'
+// const baseUrl = "http://localhost:3001";
 
-function SearchBar() {
-  const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Function to fetch jobs from your server
-    async function fetchJobs() {
-      try {
-        const response = await fetch(`${baseUrl}/jobs`); // Replace with your API endpoint
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setJobs(data);
-        console.log(jobs);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching jobs:", error);
-        setLoading(false);
-      }
-    }
-
-    fetchJobs();
-  }, []);
+function SearchBar(props) {
+  // const [jobs, setJobs] = useState(props.jobData);
+  // useEffect(() => {
+  //   if (props.jobData) {
+  //     // setJobs(props.jobData);
+  //     setTimeout(() => {
+        
+  //       setLoading(false)
+  //     },1000)
+  //   }
+  // }, [props.jobData]);
+  
+  // useEffect(() => {
+  //   props.search();
+  // })
 
   return (
     <>
@@ -37,8 +29,8 @@ function SearchBar() {
         <input type="text" placeholder="UI Designer" />
         <button className="search-btn">Search</button>
       </div>
-      {loading?<JobCardSkeleton />:
-      jobs.map((job) => {
+      {props.loading?<JobCardSkeleton />:
+      props.jobData.map((job) => {
         return <JobCard  jobData={job} />;
       })
       }

@@ -13,6 +13,7 @@ import { useParams } from "react-router";
 import JobSkeleton from "./skeleton/JobSkeleton";
 
 const baseUrl = 'https://talentcrafterbackend.onrender.com'
+// const baseUrl = 'http://localhost:3001'
 
 
 function Job() {

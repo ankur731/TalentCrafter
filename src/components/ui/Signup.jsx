@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useNavigate } from "react-router";
 import { useAuthContext } from '../../hooks/useAuthContext';
 
+const baseUrl = 'https://talentcrafterbackend.onrender.com'
+// const baseUrl = 'http://localhost:3001'
+
 function Signup() {
     const navigate = useNavigate();
 
@@ -42,7 +45,7 @@ function Signup() {
         setSubmitted(true);
   
         try {
-            const response = await axios.post('https://talentcrafterbackend.onrender.com/signup', values); // Replace with your API endpoint
+            const response = await axios.post(`${baseUrl}/signup`, values); // Replace with your API endpoint
             
             //  const json = await JSON.parse(response)
 
